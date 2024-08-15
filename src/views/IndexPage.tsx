@@ -6,7 +6,7 @@ export default function IndexPage() {
   const drinks = useAppStore((state) => state.drinks);
   const hasDrinks = useMemo(() => drinks.drinks.length, [drinks]);
   return (
-    <>
+    <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 my-10 gap-10">
       <h1 className='text-6xl font-extrabold'>Recetas</h1>
 
       {hasDrinks ? (
@@ -20,6 +20,6 @@ export default function IndexPage() {
           No hay resultados aún, utiliza el formulario para buscar recetas
         </p>
       )}
-    </>
+    </div>
   );
 }
