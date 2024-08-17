@@ -1,12 +1,15 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { useAppStore } from "../stores/useAppStore";
+import { Recipe } from "../types";
+
 
 export default function Modal() {
 
   const modal = useAppStore((state) => state.modal);
   const closeModal = useAppStore((state) => state.closeModal);
   const selectedRecipe = useAppStore((state) => state.selectedRecipe);
+  const handleClickFavorite = useAppStore((state) => state.handleClickFavorite);
 
   const renderIngredients = () => {
 
@@ -86,11 +89,18 @@ export default function Modal() {
                     Instrucciones
                   </Dialog.Title>
                   <p className="text-lg">{selectedRecipe.strInstructions}</p>
-                  <div className="mt-5 flex justify-between">
+                  <div className="mt-5 flex justify-between gap-4">
                     <button
+                    onClick={closeModal}
                     type='button'
-                    className='w-full rounded bg-gray-600 p-3 font-bold uppercase text-white shadow hover:gb-gray-500'
+                    className='w-full rounded bg-gray-600 p-3 font-bold uppercase text-white shadow hover:bg-gray-400'
                     >Cerrar</button>
+
+                    <button
+                    onClick={() => handleClickFavorite(selectedRecipe)}
+                    type='button'
+                    className='w-full rounded bg-orange-600 p-3 font-bold uppercase text-white shadow hover:bg-orange-400'
+                    >Agregar a Favoritos</button>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
