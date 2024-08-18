@@ -1,12 +1,13 @@
-import { Fragment } from 'react'
-import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline'
-import { XMarkIcon } from '@heroicons/react/20/solid'
 import { Transition } from '@headlessui/react'
+import { XMarkIcon } from '@heroicons/react/20/solid'
+import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline'
+import { Fragment } from 'react'
 import { useAppStore } from '../stores/useAppStore'
 
 export default function Notification() {
 
   const notification = useAppStore((state) => state.notification)
+  const hideNotification = useAppStore((state) => state.hideNotification)
 
 
   return (
@@ -45,7 +46,7 @@ export default function Notification() {
                   <button
                     type="button"
                     className="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    onClick={() => { }}
+                    onClick={() => {hideNotification}}
                   >
                     <span className="sr-only">Cerrar</span>
                     <XMarkIcon className="h-5 w-5" aria-hidden="true" />
