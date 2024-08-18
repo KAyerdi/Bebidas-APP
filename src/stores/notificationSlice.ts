@@ -1,5 +1,4 @@
 import { StateCreator } from "zustand";
-import { RecipesSliceType } from "./recipeSlice";
 import { FavoritesSliceType } from "./favoritesSlice";
 
 type Notification = {
@@ -15,7 +14,7 @@ export type NotificationSliceType = {
 }
 
 
-export  const createNotificationSlice : StateCreator<NotificationSliceType & FavoritesSliceType, [], [], NotificationSliceType> = (set) => ({
+export  const createNotificationSlice : StateCreator<NotificationSliceType & FavoritesSliceType, [], [], NotificationSliceType> = (set, get) => ({
   notification: {
     text:'Texto Notificacion',
     error:false,
@@ -29,6 +28,9 @@ export  const createNotificationSlice : StateCreator<NotificationSliceType & Fav
         show: true,
       }
     })
+    setTimeout(() =>{
+      get().hideNotification()
+    }, 5000)
   },
   hideNotification: () => {
       set({
